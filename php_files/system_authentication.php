@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -13,20 +15,26 @@ if ($conn->connect_error) {
 $username = $_POST['username'];
 $password = $_POST['password'];
 
+
 $sql = "SELECT username, password FROM user";
 $res = $conn->query($sql);
-
+$error = "";
 if ($res->num_rows > 0) {
-    $confirmed = false;
+    
+    $success = false;
     while ($row = $res->fetch_assoc()) {
         if ($row['username'] == $username && $row['password'] == $password) {
-            $confirmed = true;
+            $success = true;
+        } elseif ($row['username'] == $username && $row['password'] != $password) {
+            $error = 'Incorrect password.';
+        } else {
+            $error = "Account doesn't exist.";
         }
     }
-    if ($confirmed === false) {
+    $_SESSION['error'] = $error;
+    if ($success === false) {
         header('Location: http://localhost/projects/reservation/');
-    }
-    else {
+    } else {
         header('Location: http://localhost/projects/reservation/system_management/');
     }
 }

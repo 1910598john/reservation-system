@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,6 +9,7 @@
     <title>Login</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel="stylesheet" href="./public/index.scss">
+    <script src="https://kit.fontawesome.com/2f8a9e5e8e.js" crossorigin="anonymous"></script>
     <!--FONTS-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,15 +22,23 @@
             <div class="hotel-name">
                 <span>King Inns</span>
             </div>
-            <form method="POST" action="<?php echo htmlspecialchars('./php_files/system_authentication.php');?>">
-                <input type="text" name="username" placeholder="Username" required>
-                <input type="password" name="password" placeholder="Password" required>
-                <input type="submit" name="submit" value="Sign-in">
+            <form method="post" action="<?php echo htmlspecialchars('./php_files/system_authentication.php');?>">
+                <?php
+                if (isset($_SESSION['error'])) {
+                    echo '<div class="error-message error" id="error-message">';
+                    echo '<span>'. $_SESSION['error'] . '</span>';
+                    echo '</div>';
+                    session_destroy();
+                }
+                ?>
+                <div class="fields input-fields">
+                    <input type="text" name="username" placeholder="Username" required>
+                    <input type="password" name="password" placeholder="Password" required>
+                    <input type="submit" name="submit" value="Sign-in">
+                </div>
             </form>
         </div>
     </div>
 </div>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script src="./public/index.js"></script>
 </body>
 </html>

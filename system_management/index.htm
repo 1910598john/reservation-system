@@ -6,6 +6,7 @@
     <title>Login</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel="stylesheet" href="./main.scss">
+    <script src="https://kit.fontawesome.com/2f8a9e5e8e.js" crossorigin="anonymous"></script>
     <!--FONTS-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,19 +14,41 @@
 </head>
 <body>
 <div class="body-wrapper body-container">
-    <div class="system-management-panel">
+    <div class="system-management-panel" id="system-management-panel">
         <div class="panel-header header">
             <div class="hotel-name">
                 <span>King Inns</span>
             </div>
-            <div class="panel-name"></div>
-            <div class="panel-settings settings"></div>
+            <div class="panel-name">
+                <span>System Management</span>
+            </div>
+            <div class="panel-settings settings">
+                <a id="settings">Settings</a>
+            </div>
         </div>
-        <div class="system-visuals rooms-availability">
-            <div class="current-user"></div>
-            <div class="available-rooms"></div>
-            <div class="reserved-rooms"></div>
-            <div class="sign-out"></div>
+        <div class="availability system-visuals">
+            <div class="current-user">
+                <div class="user-id">
+                    <span>User:<span id="username">jmcatamora</span></span>
+                    <span><span id="rank">(Receptionist)</span></span>
+                </div>
+            </div>
+            <div class="available-rooms">
+                <div class="available-rooms-content">
+                    <span>Available: <span id="available-rooms">95%</span></span>
+                    <span>Capacity: 200</span>
+                </div>
+            </div>
+            <div class="reserved-rooms">
+                <div class="reserved-rooms-content">
+                    <span>Unoccupied: <span class="unoccupied-rooms">190</span></span>
+                    <span>Occupied: <span id="occupied-rooms">10</span></span>
+                    <span>Reserved: <span id="reserved-rooms">1</span>/<span class="unoccupied-rooms">190</span></span>
+                </div>
+            </div>
+            <div class="sign-out">
+                <a id="sign-out">Sign-out</a>
+            </div>
         </div>
         <div class="main">
             <div class="check-in"></div>
